@@ -65,10 +65,15 @@ float m_diff[] = {0.54,0.89,0.63, 1.0};
 float m_spec[] = {0.316228,0.316228,0.316228, 1.0};
 float shiny = 0.1;
 
-float m_amb1[] = {0.05,0.05,0.05};
-float m_diff1[] = {0.5,0.5,0.5};
+float m_amb1[] = {0.05,0.05,0.05,1};
+float m_diff1[] = {0.5,0.5,0.5,1};
 float m_spec1[] = {0.7,0.7,0.7,1.0};
 float shiny1 = 0.078125;
+
+float m_ambS[] = {0.0,0.0,0.0,1};
+float m_diffS[] = {0.01,0.01,0.01,1};
+float m_specS[] = {0.5,0.5,0.5,1.0};
+float shinyS = 0.25;
 
 int window_1, window_2;
 
@@ -377,6 +382,23 @@ void quadMesh(){
 }
 
 
+void drawSphere(){
+
+
+	glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, m_ambS); 
+	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, m_diffS); 
+	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, m_specS); 
+	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shinyS);
+
+	glPushMatrix();
+	glTranslatef(0, 0.0, 0.0);
+	glutSolidSphere(100.0, 50, 50);
+ 
+	glPopMatrix();
+ 
+
+}
+
 /* display function - GLUT display callback function
  *		clears the screen, sets the camera position, draws the ground plane and movable box
  */
@@ -396,7 +418,7 @@ void display(void)
 	glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, m_diff); 
 	glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, m_spec); 
 	glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, shiny);
-
+	
 	gluLookAt(camPos[0], camPos[1], camPos[2], 0,0,0, 0,0,1);
 
     glPushMatrix();
@@ -804,16 +826,19 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(70, 40);
 	window_1 = glutCreateWindow(argv[0]);
 	glutSetWindowTitle("Terrain");	//creates the window
+	glEnable(GL_DEPTH_TEST);
 	init();
 
 
 
 	printf("\n");
 	printf("\n");
-	std::cout << "Please input in the size of the Terrain. (Input a value between 30 - 300)" << std::endl;
-	std::cin >> terrainSize;
+	// std::cout << "Please input in the size of the Terrain. (Input a value between 30 - 300)" << std::endl;
+	// std::cin >> terrainSize;
 	printf("\n");
 	printf("\n");
+
+	terrainSize = 100;
 
 	printf("Interactive Terrain Mesh\n");
 	printf("Using arrow keys to adjust point of view\n");
