@@ -8,7 +8,6 @@
 LDFLAGS = -lGL -lGLU -lglut
 CFLAGS= -w -g -Wall -std=c++11 
 CC=g++
-EXEEXT= square1
 RM=rm
 
 # Windows (cygwin)
@@ -44,4 +43,4 @@ Terrain: Terrain.o
 	$(CC) -o $@ $^ $(CFLAGS) $(LDFLAGS)
 
 clean:
-	$(RM) *.o $(PROGRAM_NAME)$(EXEEXT)
+	$(RM) *.o $(PROGRAM_NAME)

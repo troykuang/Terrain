@@ -841,7 +841,7 @@ int main(int argc, char** argv)
 	terrainSize = 100;
 
 	printf("Interactive Terrain Mesh\n");
-	printf("Using arrow keys to adjust point of view\n");
+	printf("Using arrow keys to adjust the point of view\n");
 	printf("W/w - Switch from wireframe to filled polygons to mixed views\n");
 	printf("L/l - Lights on/ off\n");
 	printf("F/f - Smooth/ Flat shading\n");
@@ -887,7 +887,7 @@ int main(int argc, char** argv)
 	glutInitWindowPosition(900, 200);
 	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
 	window_2 = glutCreateWindow (argv[0]);
-	glutSetWindowTitle("Overview");
+	glutSetWindowTitle("Height Map");
    	init_2();
    	overviewSide = 2/(float)terrainSize;
    	glutDisplayFunc(display_2);
